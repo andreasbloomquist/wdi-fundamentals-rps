@@ -5,7 +5,7 @@
 
 function getInput() {
     console.log("Please choose either 'rock', 'paper', or 'scissors'.")
-    return prompt();
+    return prompt("Type in rock, paper, or scissors, and let's play!").toLowerCase();
 }
 function randomPlay() {
     var randomNumber = Math.random();
@@ -21,11 +21,19 @@ function randomPlay() {
 /*           Write Your Code Below            */
 ////////////////////////////////////////////////
 
-function getPlayerMove(move) {
+function getPlayerMove() {
     // Write an expression that operates on a variable called `move`
     // If a `move` has a value, your expression should evaluate to that value.
     // However, if `move` is not specified / is null, your expression should equal `getInput()`.
-    return move || getInput();
+    move = getInput();
+    if ((move == 'rock') || (move == 'paper') || (move == 'scissors')){
+        return move;
+    }
+    else {
+        return getPlayerMove();
+    }
+
+    //return move || getInput();
 }
 
 function getComputerMove(move) {
@@ -79,13 +87,9 @@ function playToFive() {
       else if (winner === 'computer') {
         computerWins += 1;
       }
-       else if (winner === 'tie'){
-          playerWins += 0;
-          computerWins += 0;
-      }
         console.log('You played ' + playerMove + ' and the computer played ' + computerMove + '. \n');
         console.log('The current score is Player ' + playerWins + ' to Computer ' + computerWins + '. \n');
-      }
+    }
 
     return 'And the winner is... ' + winner + '! Score:' + [playerWins, computerWins];}
 playToFive();
